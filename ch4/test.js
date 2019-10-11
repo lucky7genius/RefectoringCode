@@ -61,14 +61,87 @@ var sampleProvinceData = require('./sampleProvinceData.js');
 //     });
 // });
 // v6 修改测试夹具
-describe('province', function () {
-    let asia;
-    beforeEach(function () {
-        asia = new Province(sampleProvinceData());
-    });
-    it('change production', function () {
-        asia.producers[0].production = 20;
-        expect(asia.shortfall).equal(-6);
-        expect(asia.profit).equal(292);
+// describe('province', function () {
+//     let asia;
+//     beforeEach(function () {
+//         asia = new Province(sampleProvinceData());
+//     });
+//     it('change production', function () {
+//         asia.producers[0].production = 20;
+//         expect(asia.shortfall).equal(-6);
+//         expect(asia.profit).equal(292);
+//     });
+// });
+
+// v7 探测边界条件
+// describe('no producers', function () {
+//     let noProducers;
+//     beforeEach(function () {
+//         const data = {
+//             name: "No proudcers",
+//             producers: [],
+//             demand: 30,
+//             price: 20
+//         };
+//         noProducers = new Province(data);
+//     });
+//     it('shortfall', function () {
+//         expect(noProducers.shortfall).equal(30);
+//     });
+//     it('profit', function () {
+//         expect(noProducers.profit).equal(0);
+//     });
+// });
+
+// v8 探测边界条件 如果拿到的是数值类型， 0会是不错的边界条件
+// describe('province', function () {
+//     let asia;
+//     beforeEach(function () {
+//         asia = new Province(sampleProvinceData());
+//     });
+//     it('zero demand', function () {
+//         asia.demand = 0;
+//         expect(asia.shortfall).equal(-25);
+//         expect(asia.profit).equal(0);
+//     });
+// });
+
+// v9 探测边界条件 负值同样值得一试
+// describe('province', function () {
+//     let asia;
+//     beforeEach(function () {
+//         asia = new Province(sampleProvinceData());
+//     });
+//     it('negative demand', function () {
+//         asia.demand = -1;
+//         expect(asia.shortfall).equal(-26);
+//         expect(asia.profit).equal(-10);
+//     });
+// });
+
+// v10 探测边界条件 空字符串
+// describe('province', function () {
+//     let asia;
+//     beforeEach(function () {
+//         asia = new Province(sampleProvinceData());
+//     });
+//     it('empty string demand', function () {
+//         asia.demand = "";
+//         expect(asia.shortfall).NaN;
+//         expect(asia.profit).NaN;
+//     });
+// });
+
+// v11 这个测试结果很有意思,它并不是抛出一个简单的错误说缺额的值不为0
+describe('string for producers', function () {
+    it('', function () {
+        const data = {
+            name: "String producers",
+            producers: "",
+            demand: 30,
+            price: 20
+        };
+        const prov = new Province(data);
+        expect(prov.shortfall).equal(0);
     });
 });
