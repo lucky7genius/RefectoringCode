@@ -1,0 +1,17 @@
+{
+  "name": "ch4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha mocha.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^6.2.1"
+  },
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
